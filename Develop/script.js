@@ -10,19 +10,14 @@ function writePassword() {
 
 }
 
-  var upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-  var lowerCase = ["abcdefghijklmnopqrstuvwxyz"];
-  var number = ["0123456789"];
-  var specialCharacter = ["!@#$%^&"];
-  var lengthpw
+  var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  var number = number = ['0', '1','2', '3', '4', '5', '6', '7', '8','9'];
+  var specialCharacter = ['!', '@', '#', '$', '%', '^', '&'];
+  var lengthpw;
   var selectedChar = [];
+  var password = "";
 
-  // var indexu = upperCase[Math.floor(Math.random() * upperCase.length)];
-  // var indexl = lowerCase[Math.floor(Math.random() * lowerCase.length)];
-  // var indexn = number[Math.floor(Math.random() * number.length)];
-  // var indexs = specialCharacter[Math.floor(Math.random() * specialCharacter.length)];
- 
-  // {console.log(indexu, indexl, indexn, indexs)};
 
 function generatePassword(){
   lengthpw = prompt("How many characters would you like your password? Please enter between 8 and 128 characters.");{console.log(lengthpw)}
@@ -42,29 +37,33 @@ function generatePassword(){
   }
 
   if (upperCaseConfirm == true) {
-    selectedChar += upperCase;
+    selectedChar = selectedChar.concat(upperCase);
   }
 
   if (lowerCaseConfirm == true) {
-    selectedChar += lowerCase;
+    selectedChar = selectedChar.concat(lowerCase);
   }
 
   if (numberConfirm == true) {
-    selectedChar += number;
+    selectedChar = selectedChar.concat(number);
   }
 
   if (specialCharacterConfirm == true) {
-    selectedChar += specialCharacter
+    selectedChar = selectedChar.concat(specialCharacter)
   }
   
-  selectedChar = selectedChar.split("").join("");
-
   console.log(selectedChar)
 
-  // if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
-  //   for (var i = 0; i < lengthpw; i++) { 
-      
-  // }
+  var password = "";
+
+  if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
+    for (var i = 0; i < lengthpw; i++) { 
+    var index = (Math.floor(Math.random() * selectedChar.length));
+    password = password + selectedChar[index]
+  }
+  return password
 }
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
