@@ -16,8 +16,12 @@ function writePassword() {
   var specialCharacter = "!@#$%^&" .split("");
   var lengthpw;
 
-  var index = Math.floor(Math.random() * upperCase.length)
+  var indexu = upperCase[Math.floor(Math.random() * upperCase.length)];
+  var indexl = lowerCase[Math.floor(Math.random() * lowerCase.length)];
+  var indexn = number[Math.floor(Math.random() * number.length)];
+  var indexs = specialCharacter[Math.floor(Math.random() * specialCharacter.length)];
  
+  {console.log(indexu, indexl, indexn, indexs)};
 
 function generatePassword(){
   lengthpw = prompt("How many characters would you like your password? Please enter between 8 and 128 characters.");
@@ -27,22 +31,16 @@ function generatePassword(){
   else if (lengthpw < 8 || lengthpw > 128){lengthpw = prompt("Try again. Password must be between 8 and 128 characters.")}
 
   else {
-    upperCase = confirm("Include upper case characters in your password?");
-    lowerCase = confirm("Include lower case characters in your password?");
-    number = confirm("Include numbers in your password?");
-    specialCharacter = confirm("Include special characters in your password?");
+    upperCaseConfirm = confirm("Include upper case characters in your password?");
+    lowerCaseConfirm = confirm("Include lower case characters in your password?");
+    numberConfirm = confirm("Include numbers in your password?");
+    specialCharacterConfirm = confirm("Include special characters in your password?");
   }
 
-  var index = Math.floor(Math.random() * upperCase.length)
-  
+  if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
+    selection = concat(indexu + indexl + indexn + indexs);}
 
-
-  if (upperCase && lowerCase && number && specialCharacter) {
-    selection = concat
-  }
 }
-
-
 
 
 // Add event listener to generate button
