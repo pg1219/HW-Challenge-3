@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = buildPassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -36,66 +36,44 @@ function generatePassword(){
     specialCharacterConfirm = confirm("Include special characters in your password?");{console.log(specialCharacterConfirm)}
   };
 
-  if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
-    selectedChar = selectedChar.concat(upperCase, lowerCase, number, specialCharacter);
-  }
+  var passwordOptions = {
+    length:lengthpw,
+    hasSpecialCharacters: specialCharacterConfirm,
+    hasNumericCharacters: numberConfirm,
+    hasLowerCaseCharacters: lowerCaseConfirm,
+    hasUpperCaseCharacters: upperCaseConfirm,
+  };
 
-  else if (upperCaseConfirm && lowerCaseConfirm && numberConfirm) {
-    selectedChar = selectedChar.concat(upperCase, lowerCase, number);
+  return passwordOptions;
+}
+
+
+function buildPassword() {
+  var options = generatePassword();
+
+  console.log(options)
+
+  if (options.hasUpperCaseCharacters) {
+    selectedChar = selectedChar.concat(upperCase)
   }
-  else if (upperCaseConfirm && lowerCaseConfirm && specialCharacter){
-    selectedChar = selectedChar.concat(upperCase, lowerCase, specialCharacter);
+  if (options.hasLowerCaseCharacters) {
+    selectedChar = selectedChar.concat(lowerCase)
   }
-  else if (lowerCaseConfirm && number && specialCharacter){
-    selectedChar = selectedChar.concat(lowerCase, number, specialCharacter);
+  if (options.hasNumericCharacters) {
+    selectedChar = selectedChar.concat(number)
   }
-  else if (upperCaseConfirm && number && specialCharacter){
-    selectedChar = selectedChar.concat(upperCase, number, specialCharacter);
-  }
-  else if (upperCaseConfirm && lowerCaseConfirm ){
-    selectedChar = selectedChar.concat(upperCase, lowerCase);
-  }
-  else if (upperCaseConfirm && numberConfirm){
-    selectedChar = selectedChar.concat(upperCase, number);
-  }
-  else if (upperCaseConfirm && specialCharacter){
-    selectedChar = selectedChar.concat(upperCase, specialCharacter);
-  }
-  else if (lowerCaseConfirm && number){
-    selectedChar = selectedChar.concat(lowerCase, number);
-  }
-  else if (lowerCaseConfirm && specialCharacter){
-    selectedChar = selectedChar.concat(lowerCase, specialCharacter);
-  }
-  else if (number && specialCharacter){
-    selectedChar = selectedChar.concat(number, specialCharacter);
-  }
-  else if (upperCaseConfirm) {
-    selectedChar = selectedChar.concat(upperCaseConfirm);
-  }
-  else if (lowerCaseConfirm) {
-    selectedChar = selectedChar.concat(lowerCaseConfirm);
-  }
-  else if (numberConfirm) {
-    selectedChar = selectedChar.concat(number);
-  }
-  else if (specialCharacterConfirm) {
+  if (options.hasSpecialCharacters) {
     selectedChar = selectedChar.concat(specialCharacter)
   }
-  
   console.log(selectedChar)
 
-  var password = "";
-
-  // if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
     for (var i = 0; i < lengthpw; i++) { 
     var index = (Math.floor(Math.random() * selectedChar.length));
     password = password + selectedChar[index]
   }
-  // else if (upperCase && lowerCaseConfirm && numberConfirm)
-  // return password
-
+  return password
 }
+  
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
