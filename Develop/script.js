@@ -34,21 +34,52 @@ function generatePassword(){
     numberConfirm = confirm("Include numbers in your password?");
     {console.log(numberConfirm)}
     specialCharacterConfirm = confirm("Include special characters in your password?");{console.log(specialCharacterConfirm)}
+  };
+
+  if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
+    selectedChar = selectedChar.concat(upperCase, lowerCase, number, specialCharacter);
   }
 
-  if (upperCaseConfirm == true) {
-    selectedChar = selectedChar.concat(upperCase);
+  else if (upperCaseConfirm && lowerCaseConfirm && numberConfirm) {
+    selectedChar = selectedChar.concat(upperCase, lowerCase, number);
   }
-
-  if (lowerCaseConfirm == true) {
-    selectedChar = selectedChar.concat(lowerCase);
+  else if (upperCaseConfirm && lowerCaseConfirm && specialCharacter){
+    selectedChar = selectedChar.concat(upperCase, lowerCase, specialCharacter);
   }
-
-  if (numberConfirm == true) {
+  else if (lowerCaseConfirm && number && specialCharacter){
+    selectedChar = selectedChar.concat(lowerCase, number, specialCharacter);
+  }
+  else if (upperCaseConfirm && number && specialCharacter){
+    selectedChar = selectedChar.concat(upperCase, number, specialCharacter);
+  }
+  else if (upperCaseConfirm && lowerCaseConfirm ){
+    selectedChar = selectedChar.concat(upperCase, lowerCase);
+  }
+  else if (upperCaseConfirm && numberConfirm){
+    selectedChar = selectedChar.concat(upperCase, number);
+  }
+  else if (upperCaseConfirm && specialCharacter){
+    selectedChar = selectedChar.concat(upperCase, specialCharacter);
+  }
+  else if (lowerCaseConfirm && number){
+    selectedChar = selectedChar.concat(lowerCase, number);
+  }
+  else if (lowerCaseConfirm && specialCharacter){
+    selectedChar = selectedChar.concat(lowerCase, specialCharacter);
+  }
+  else if (number && specialCharacter){
+    selectedChar = selectedChar.concat(number, specialCharacter);
+  }
+  else if (upperCaseConfirm) {
+    selectedChar = selectedChar.concat(upperCaseConfirm);
+  }
+  else if (lowerCaseConfirm) {
+    selectedChar = selectedChar.concat(lowerCaseConfirm);
+  }
+  else if (numberConfirm) {
     selectedChar = selectedChar.concat(number);
   }
-
-  if (specialCharacterConfirm == true) {
+  else if (specialCharacterConfirm) {
     selectedChar = selectedChar.concat(specialCharacter)
   }
   
@@ -56,13 +87,14 @@ function generatePassword(){
 
   var password = "";
 
-  if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
+  // if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
     for (var i = 0; i < lengthpw; i++) { 
     var index = (Math.floor(Math.random() * selectedChar.length));
     password = password + selectedChar[index]
   }
-  return password
-}
+  // else if (upperCase && lowerCaseConfirm && numberConfirm)
+  // return password
+
 }
 
 // Add event listener to generate button
