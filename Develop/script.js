@@ -38,10 +38,10 @@ function generatePassword(){
   }
 
   if (upperCaseConfirm && lowerCaseConfirm && numberConfirm && specialCharacterConfirm) {
-    selection = concat(indexu + indexl + indexn + indexs);}
-
+    for (var i = 0; i < lengthpw; i++) { 
+      password = password.toString()+indexu.toString()+indexl.toString()+indexn.toString()+indexs.toString();
+    }
+  }
 }
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
